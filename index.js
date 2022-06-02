@@ -3,35 +3,38 @@
 
 
 
-let userName = prompt('Enter your user name');
-//save username to cookie
+let userName = prompt('Enter your user name'); //save username to cookie
+
+//n is the range limit
 let n = 2;
-let playerNum = prompt(`Guess a number between 1 and ${n} : `);
+
 let points = 0;
+
 let i = 0;
+
+let stage = 2;
 
 //generate random number
 function randomInteger(min, max) {
-  // now rand is from  (min-0.5) to (max+0.5)
-  max = n++
   let rand = min - 0.5 + Math.random() * (max - min + 1);
   return Math.round(rand);
 }
 
-var randomInteger = randomInteger(1, n);
+while (i <= n) {
 
-for (i = 1; i<=n; i++){}
+  var randomNumber = randomInteger(1, n);
+  console.log(randomNumber); //comment this out if you don't want to know the number guessed by COM.
 
-while(i<=n) {
-  if(randomInteger === Number(playerNum)) {
-  points++;
-  //save points to cookie
-  console.log(`Awesome!! You guessed right. You got ${points} points`)
-  console.log('Moving you to stage 2');
-  n++;
-} else {
-  console.log('You guessed wrong, try again');
+  let playerNum = prompt(`Guess a number between 1 and ${n} : `);
+
+  if (randomNumber === Number(playerNum)) {
+    points++; //save points to cookie
+    console.log(`Awesome!! You guessed right. You got ${points} points`)
+    console.log(`Moving you to stage ${stage}`);
+    n++;
+    stage++;
+  } else {
+    console.log('You guessed wrong, try again');
+    i = n + 1;
+  }
 }
-}
-
-function predictNumber() {}
